@@ -6,7 +6,6 @@ const db = new PrismaClient();
 const blogBody = t.Object({
   title: t.String(),
   content: t.String(),
-  slug: t.String(),
 });
 
 export const blogsApp = new Elysia()
@@ -23,7 +22,12 @@ export const blogsApp = new Elysia()
     "/",
     async ({ body, set }) => {
       try {
-        await db.blog.create({ data: body });
+        await db.blog.create({
+          data: {
+            ...body,
+            slug: body.title.toLowerCase().split(" ").join("-"),
+          },
+        });
       } catch (error) {
         set.status = 400;
         return `Error: ${error}`;

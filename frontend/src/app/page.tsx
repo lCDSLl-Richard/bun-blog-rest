@@ -1,11 +1,13 @@
-import Card from "../../components/Card";
 import { edenTreaty } from "@elysiajs/eden/treaty";
 import { App } from "../../../backend/src/index";
+import Card from "../../components/Card";
 
 export const client = edenTreaty<App>("http://localhost:3000/");
 
 export default async function Home() {
-  const { data: blogs } = await client.blogs[""].get();
+  const { data: blogs } = await client.blogs[""].get({
+    $fetch: { cache: "no-cache" },
+  });
 
   return (
     <main>
@@ -14,7 +16,13 @@ export default async function Home() {
         <h2>You can see each blog below</h2>
       </hgroup>
 
-      <div className="grid">
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          columnGap: "1rem",
+        }}
+      >
         {blogs ? (
           blogs.map((blog) => <Card key={blog.id} blog={blog} />)
         ) : (

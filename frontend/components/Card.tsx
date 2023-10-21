@@ -8,13 +8,13 @@ interface Blog {
 
 export default function Card({ blog }: { blog: Blog }) {
   return (
-    <Link href={`/${blog.slug}`}>
-      <article>
+    <article>
+      <Link href={`/${blog.slug}`}>
         <hgroup>
           <h1>{blog.title}</h1>
           <p>{blog.content}</p>
         </hgroup>
-      </article>
-    </Link>
+      </Link>
+    </article>
   );
 }

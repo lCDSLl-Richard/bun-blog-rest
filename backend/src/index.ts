@@ -1,11 +1,14 @@
+import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
 import { logger } from "@grotto/logysia";
 import { Elysia } from "elysia";
+
 import { blogsApp } from "./routes/blogs";
 
 const app = new Elysia()
   .use(swagger())
   .use(logger())
+  .use(cors())
   .get("/", () => "Hello Elysia")
   .group("/blogs", (app) => app.use(blogsApp))
   .listen(process.env.PORT || 3000);
