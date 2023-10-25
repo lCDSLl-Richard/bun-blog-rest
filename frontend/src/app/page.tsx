@@ -1,13 +1,17 @@
-import { edenTreaty } from "@elysiajs/eden/treaty";
-import { App } from "../../../backend/src/index";
+import { Blog } from "@/interfaces/Blog";
+import { API } from "@/utils/Api";
 import Card from "../../components/Card";
 
-export const client = edenTreaty<App>("http://localhost:3000/");
-
 export default async function Home() {
-  const { data: blogs } = await client.blogs[""].get({
-    $fetch: { cache: "no-cache" },
-  });
+  let blogs: Blog[] = [];
+
+  try {
+    const res = await fetch(API.blogs.index(), { cache: "no-cache" });
+    blogs = (await res.json()) as Blog[];
+  } catch (error) {
+    console.error(error);
+    blogs = [];
+  }
 
   return (
     <main>

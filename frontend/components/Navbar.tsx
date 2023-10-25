@@ -5,7 +5,9 @@ export default function () {
     <nav>
       <ul>
         <li>
-          <strong>BlogApp</strong>
+          <Link href={"/"}>
+            <strong>BlogApp</strong>
+          </Link>
         </li>
       </ul>
       <ul>

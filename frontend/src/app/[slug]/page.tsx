@@ -1,12 +1,26 @@
-import { client } from "../page";
+import { Blog } from "@/interfaces/Blog";
+import { API } from "@/utils/Api";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
+  let blog: Blog | undefined;
 
-  const { data: blog } = await client.blogs[slug].get();
+  try {
+    const res = await fetch(API.blogs.show(slug));
+    blog = (await res.json()) as Blog;
+  } catch (error) {
+    console.error(error);
+  }
 
-  if (!blog || blog === "Not Found") {
-    return <h1>Blog not found!</h1>;
+  if (!blog) {
+    return (
+      <main>
+        <hgroup>
+          <h1>Blog not found!</h1>
+          <p>You can try to find another blog.</p>
+        </hgroup>
+      </main>
+    );
   } else {
     return (
       <main>

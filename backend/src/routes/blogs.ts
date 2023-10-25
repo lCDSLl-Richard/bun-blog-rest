@@ -22,6 +22,10 @@ export const blogsApp = new Elysia()
     "/",
     async ({ body, set }) => {
       try {
+        if (!body.title || !body.content) {
+          throw new Error("Title and content are required");
+        }
+
         await db.blog.create({
           data: {
             ...body,
