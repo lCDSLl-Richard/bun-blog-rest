@@ -1,7 +1,9 @@
 export default function Header({
-  props: { title, subtitle },
+  title,
+  subtitle,
 }: {
-  props: { title: string; subtitle: string };
+  title: string;
+  subtitle: string;
 }) {
   return (
     <hgroup className="flex flex-col gap-2 mt-6">

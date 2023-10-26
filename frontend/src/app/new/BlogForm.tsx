@@ -1,6 +1,10 @@
 "use client";
 
+import Button from "@/components/Button";
+import Input from "@/components/Forms/Input";
+import TextArea from "@/components/Forms/TextArea";
 import { API } from "@/utils/Api";
+import { revalidatePath } from "next/cache";
 import { useState } from "react";
 
 interface FormState {
@@ -30,6 +34,7 @@ export default function BlogForm() {
 
     setFormState({ title: "", content: "" });
     setErrorMessage("");
+    revalidatePath("/");
   }
 
   const [formState, setFormState] = useState<FormState>({
@@ -40,26 +45,28 @@ export default function BlogForm() {
   const [errorMessage, setErrorMessage] = useState("");
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Title</label>
-      <input
-        type="text"
-        name="title"
+    <form
+      className="w-4/5 mx-auto mt-10 flex flex-col gap-8"
+      onSubmit={handleSubmit}
+    >
+      <Input
+        label="Title"
         value={formState.title}
         onChange={(event) => {
           setFormState({ ...formState, title: event.target.value });
         }}
+        placeholder="Your blog's title..."
       />
-      <label htmlFor="content">Content</label>
-      <textarea
-        name="content"
+      <TextArea
+        label="Content"
         value={formState.content}
-        onChange={(event) =>
-          setFormState({ ...formState, content: event.target.value })
-        }
+        onChange={(event) => {
+          setFormState({ ...formState, content: event.target.value });
+        }}
+        placeholder="Your blog's content..."
       />
-      <button>Create Blog!</button>
-      <h6 style={{ color: "#c62828" }}>{errorMessage}</h6>
+      <Button label="Submit Blog!" />
+      <h6 className="text-primary">{errorMessage}</h6>
     </form>
   );
 }

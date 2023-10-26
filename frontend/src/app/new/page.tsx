@@ -1,12 +1,13 @@
+import Header from "@/components/Header";
 import BlogForm from "./BlogForm";
 
 export default function Page() {
   return (
     <>
-      <hgroup>
-        <h1>Add a blog</h1>
-        <h2>So everyone can read what you have to say</h2>
-      </hgroup>
+      <Header
+        title="Post a new Blog!"
+        subtitle="Join the community with some content!"
+      />
       <BlogForm />
     </>
   );
