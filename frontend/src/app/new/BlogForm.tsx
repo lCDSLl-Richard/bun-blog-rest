@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import Input from "@/components/Forms/Input";
 import TextArea from "@/components/Forms/TextArea";
 import { API } from "@/utils/Api";
-import { revalidatePath } from "next/cache";
 import { useState } from "react";
 
 interface FormState {
@@ -34,7 +33,6 @@ export default function BlogForm() {
 
     setFormState({ title: "", content: "" });
     setErrorMessage("");
-    revalidatePath("/");
   }
 
   const [formState, setFormState] = useState<FormState>({
