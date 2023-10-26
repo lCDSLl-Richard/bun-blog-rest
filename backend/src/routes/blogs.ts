@@ -14,7 +14,7 @@ export const blogsApp = new Elysia()
     const blog = await db.blog.findFirst({ where: { slug: params.slug } });
     if (!blog) {
       set.status = 404;
-      return "Not Found";
+      return { message: "Not Found" };
     }
     return blog;
   })
@@ -34,7 +34,7 @@ export const blogsApp = new Elysia()
         });
       } catch (error) {
         set.status = 400;
-        return `Error: ${error}`;
+        return { message: `Error: ${error}` };
       }
     },
     {
@@ -46,6 +46,6 @@ export const blogsApp = new Elysia()
       return await db.blog.delete({ where: { slug: params.slug } });
     } catch {
       set.status = 404;
-      return "Not Found";
+      return { message: "Not Found" };
     }
   });

@@ -4,6 +4,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Forms/Input";
 import TextArea from "@/components/Forms/TextArea";
 import { API } from "@/utils/Api";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 interface FormState {
@@ -33,6 +34,7 @@ export default function BlogForm() {
 
     setFormState({ title: "", content: "" });
     setErrorMessage("");
+    router.push("/");
   }
 
   const [formState, setFormState] = useState<FormState>({
@@ -41,6 +43,8 @@ export default function BlogForm() {
   });
 
   const [errorMessage, setErrorMessage] = useState("");
+
+  const router = useRouter();
 
   return (
     <form
