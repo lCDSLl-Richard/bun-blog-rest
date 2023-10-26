@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Navbar from "../../components/Navbar";
+import Navbar from "../components/Navbar/Navbar";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,15 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"
-        />
-      </head>
-      <body className="container">
+      <head></head>
+      <body className="w-full text-textColor">
         <Navbar />
-        {children}
+        <main className="w-4/5 mx-auto">{children}</main>
       </body>
     </html>
   );

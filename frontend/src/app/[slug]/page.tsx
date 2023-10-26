@@ -14,21 +14,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   if (!blog) {
     return (
-      <main>
+      <>
         <hgroup>
           <h1>Blog not found!</h1>
           <p>You can try to find another blog.</p>
         </hgroup>
-      </main>
+      </>
     );
   } else {
     return (
-      <main>
+      <>
         <hgroup>
           <h1>{blog.title}</h1>
           <p>{blog.content}</p>
         </hgroup>
-      </main>
+      </>
     );
   }
 }

@@ -1,6 +1,8 @@
 import { Blog } from "@/interfaces/Blog";
 import { API } from "@/utils/Api";
-import Card from "../../components/Card";
+import Card from "@/components/Card";
+import Header from "@/components/Header";
+import { title } from "process";
 
 export default async function Home() {
   let blogs: Blog[] = [];
@@ -14,25 +16,21 @@ export default async function Home() {
   }
 
   return (
-    <main>
-      <hgroup>
-        <h1>Discover Blogs!</h1>
-        <h2>You can see each blog below</h2>
-      </hgroup>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          columnGap: "1rem",
+    <>
+      <Header
+        props={{
+          title: "Welcome to the Blog App",
+          subtitle: "Discover the latest posts!",
         }}
-      >
+      />
+
+      <div className="grid grid-cols-2 gap-x-12 gap-y-8 my-16">
         {blogs ? (
           blogs.map((blog) => <Card key={blog.id} blog={blog} />)
         ) : (
           <h1>There are no blogs yet!</h1>
         )}
       </div>
-    </main>
+    </>
   );
 }
