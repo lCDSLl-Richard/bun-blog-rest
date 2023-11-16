@@ -17,4 +17,16 @@ model Blog {
   slug      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id])
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  firstName String
+  lastName  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  blogs     Blog[]
 }
