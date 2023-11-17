@@ -1,0 +1,13 @@
+<app-header
+  title="Post a new Blog!"
+  subtitle="Join the community with some content!"
+></app-header>
+
+<form
+  class="w-4/5 mx-auto mt-10 flex flex-col gap-8"
+  [formGroup]="blogForm"
+  (ngSubmit)="handleSubmit()"
+>
+  <input type="text" />
+  <button>Hey</button>
+</form>

@@ -1,0 +1,12 @@
+<app-header
+  title="Welcome to the Blog App"
+  subtitle="Discover the latest posts!"
+></app-header>
+<div class="grid grid-cols-2 gap-x-12 gap-y-8 my-16">
+  <app-card
+    *ngFor="let blog of blogs"
+    title="{{ blog.title }}"
+    content="{{ blog.content }}"
+    slug="{{ blog.slug }}"
+  ></app-card>
+</div>
